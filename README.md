@@ -11,7 +11,7 @@ Demo: https://youtu.be/watch?v=8rE4W-PdPsY
 https://youtu.be/8J6SMoVd5BY
 
 ## 『トンデモワンダーズ』(`wonderz`)
-https://youtu.be/zUqiB6cbWto
+Demo: https://youtu.be/zUqiB6cbWto
 
 本家様：トンデモワンダーズ / sasakure.UK feat. 初音ミク (+ KAITO)
 https://www.youtube.com/watch?v=dBQg24mx45Y
