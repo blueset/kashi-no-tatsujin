@@ -1,0 +1,132 @@
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+ <meta charset="UTF-8">
+ <link href="https://fonts.googleapis.com/css?family=Roboto:400,300" rel='stylesheet' type='text/css'>
+ <title>Combiner</title>
+ </head>
+ <body>
+ <style>
+  body{
+      background: #e7e9fd;
+      font-family: "Source Han Sans", sans-serif;
+      font-weight: 400;
+  }
+  h1{
+      background: #2a36b1;
+      color: #fff;
+      margin: 0 -8px;
+     padding: 30px 30px;
+     font-weight: 300;
+  }
+  textarea {
+    font-family: "Source Han Sans", sans-serif;
+  }
+  #captionwrap{
+      margin-left:22px;
+  }
+  .clearfix:after {
+    content: " "; /* Older browser do not support empty content */
+    visibility: hidden;
+    display: block;
+    height: 0;
+    clear: both;
+ }
+ #convertbtn{
+     display: block;
+     background: #4d73ff;
+     padding: 5px;
+     margin: 5px auto;
+     border-radius: 5px;
+     box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+     color:#fff;
+     text-decoration: none;
+     text-align: center;
+     width:100px;
+ }
+ #convertbtn:active{
+     box-shadow: 0 0px 5px rgba(0,0,0,0.5);
+ }
+ pre{
+     padding: 5px;
+     border-radius: 5px;
+     background: #d0d9ff;
+     box-shadow: inset 1px 1px 10px rgba(0,0,0,0.2);
+ }
+ footer{
+     text-align: center;
+     font-size: 8pt;
+ }
+ footer a{
+     text-decoration: none;
+ }
+ #lang a{
+     color:white;
+ }
+ .row{
+     vertical-align: top;
+ }
+ .row textarea{
+     float: left;
+     margin: 0 3px;
+ }
+ #origin{
+     width:48.2%;
+     text-align: right;
+ }
+ #translate{
+     width:48.2%;
+ }
+ </style>
+ <p id="lang" style="float:right;"><a href="javascript:void(0)" onclick="switchLang('zh')">中文</a> <a href="javascript:void(0)" onclick="switchLang('en')">English</a></p>
+ <h1 id="title">Combiner</h1>
+ <p id="captionwrap"><span id="caption">Divider: </span><input type="text" name="divider" id="divider" placeholder=" / " value=" / "></p>
+ <hr>
+ <div class="row clearfix">
+ <textarea name="origin" onkeyup="textAreaAdjust(this)" placeholder="Original Lyrics" id="origin" cols="30" rows="3"></textarea>
+ <textarea name="translate" onkeyup="textAreaAdjust(this)" placeholder="Translated Lyrics" id="translate" cols="30" rows="3"></textarea>
+ </div>
+ <a href="javascript:void(0)" onclick="convert()" id="convertbtn">Combine</a>
+ <pre id="result">Result Goes here.
+     </pre>
+ <hr>
+ <footer>
+ <a href="http://ilove.1a23.com">iBe - 1A23 Lab</a> | <a href="http://1a23.com" id="link1a23">Blueset Studio</a>
+ </footer>
+ <script>
+ function textAreaAdjust(o) {
+     o.style.height = "1px";
+     o.style.height = (25+o.scrollHeight)+"px";
+ }
+ function convert () {
+     originDom = document.getElementById("origin");
+     translateDom = document.getElementById("translate");
+ 
+     originArray = originDom.value.split("\n");
+     translateArray = translateDom.value.split("\n");
+     divider = document.getElementById("divider").value;
+     maxlength = originArray.length > translateArray.length ? originArray.length : translateArray.length;
+     resultDom = document.getElementById("result");
+     resultDom.innerText = "";
+     var html = ""
+     for (var i = 0; i <= maxlength - 1; i++) {
+         var orig = originArray[i].replace(/,$/g, "");
+         console.log(orig);
+         var origArr = JSON.parse(orig);
+         var trans = translateArray[i] !== "true" ? translateArray[i] : true;
+         if (trans !== "" && trans !== undefined) { origArr.push(trans); }
+         html += JSON.stringify(origArr) + ",";
+         html += "\n";
+     };
+     resultDom.innerText = html;
+ }
+ window.onload = function () {
+     textAreaAdjust(document.getElementById("origin"));
+     textAreaAdjust(document.getElementById("translate"));
+ }
+ </script>
+ <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"rayId":"6961f9f17b6161ee","version":"2021.8.1","r":1,"token":"70451ba7613e4459b1d37a51bc48069d","si":10}'></script>
+ </body>
+ </html>
+ 
