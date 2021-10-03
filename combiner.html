@@ -79,7 +79,6 @@
      width:48.2%;
  }
  </style>
- <p id="lang" style="float:right;"><a href="javascript:void(0)" onclick="switchLang('zh')">中文</a> <a href="javascript:void(0)" onclick="switchLang('en')">English</a></p>
  <h1 id="title">Combiner</h1>
  <p id="captionwrap"><span id="caption">Divider: </span><input type="text" name="divider" id="divider" placeholder=" / " value=" / "></p>
  <hr>
@@ -91,9 +90,6 @@
  <pre id="result">Result Goes here.
      </pre>
  <hr>
- <footer>
- <a href="http://ilove.1a23.com">iBe - 1A23 Lab</a> | <a href="http://1a23.com" id="link1a23">Blueset Studio</a>
- </footer>
  <script>
  function textAreaAdjust(o) {
      o.style.height = "1px";
@@ -114,8 +110,12 @@
          var orig = originArray[i].replace(/,$/g, "");
          console.log(orig);
          var origArr = JSON.parse(orig);
-         var trans = translateArray[i] !== "true" ? translateArray[i] : true;
-         if (trans !== "" && trans !== undefined) { origArr.push(trans); }
+         var trans = [];
+         if (translateArray[i]) {
+            trans = translateArray[i].split(",").map(v => v == "true" ? true :
+                                                          v == "null" ? null : v);
+         }
+         if (trans.length > 0) { origArr = [...origArr, ...trans]; }
          html += JSON.stringify(origArr) + ",";
          html += "\n";
      };

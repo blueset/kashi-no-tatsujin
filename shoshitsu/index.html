@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <audio src="shoshitsu.mp3" id="player" controls></audio>
+    <main>
+        <!-- <img src="red.png" id="cover"> -->
+        <img src="logo.svg" id="logo">
+        <div id="subtitle">THE END OF HATSUNE MIKU</div>
+        <img src="shoshitsu-plain-thumbnail.png" id="plain_thumb">
+        <div id="marquee"><div id="marquee_content">A problem has been detected and the program are deleted to prevent damage to your computer. &nbsp;&nbsp;A problem has been detected and the program are deleted to prevent damage to your computer.&nbsp;</div></div>
+
+        <header>
+            <h1>初音ミクの消失 / cosMo@暴走P feat. 初音ミク</h1>
+        </header>
+        <section>
+            <div id="counterWrapper">
+                <div id="counterDrum">
+                    <span id="counter">0</span>
+                </div>
+            </div>
+            <div class="containers">
+                <div id="markerContainer">
+                    <div id="markerTarget"></div>
+                </div>
+                <div id="lyricsContainer">
+                    <div class="lyricsGroup">
+                        <span class="lyrics past"></span><span class="lyrics current"></span><span class="lyrics currentWord"></span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer>
+            <picture>
+            </picture>
+        </footer>
+    </main>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="0" height="0" viewBox="0 0 0 0" preserveAspectRatio="none">
+        <filter id="filter" x="-20%" y="-20%" width="140%" height="140%" filterUnits="objectBoundingBox" primitiveUnits="userSpaceOnUse" color-interpolation-filters="linearRGB">
+            <feFlood flood-color="#dd675f" flood-opacity="1" x="0%" y="0%" width="100%" height="100%" result="flood3"/>
+            <feComposite in="flood3" in2="SourceAlpha" operator="in" x="0%" y="0%" width="100%" height="100%" result="composite"/>
+        </filter>
+    </svg>
+    <style>
+        main {
+            background-color: #16A9CD;
+            width: 640px;
+            height: 360px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+            perspective: 1000px;
+        }
+        #cover { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; opacity: 0.5; }
+        #plain_thumb {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            transform: rotateX(48deg) rotateY(-45deg) rotateZ(28deg) translateX(80px) translateY(-30px) scaleX(1.3);
+        }
+        #marquee {
+            position: absolute;
+            transform: rotateX(47.5deg) rotateY(-45deg) rotateZ(28deg) translateX(-30px) translateY(360px) skewX(0deg);
+            width: 150%;
+            color: #fff;
+            overflow: hidden;
+            white-space: nowrap;
+            font-family: "Minecraftia", "fs Tahoma 8px", sans-serif;
+            font-size: 1em;
+            letter-spacing: 0.1em;
+            height: 1.5em;
+        }
+        #marquee_content {
+            position: absolute;
+            left: -112.8%;
+            animation: marquee 20s linear infinite;
+        }
+        #subtitle {
+            color: #fff;
+            font-family: "Inter", sans-serif;
+            font-size: 0.7em;
+            letter-spacing: 0.1em;
+            transform: rotate(81deg) translateX(70px) translateY(68px);
+            position: absolute;
+        }
+        @keyframes marquee {
+            0% {
+                left: 0%;		
+            }
+            100% {
+                left: -112.8%;
+            }
+        }
+        #logo {
+            position: absolute;
+            height: 112%;
+            transform: rotate(5deg) translateY(-8px) translateX(-10px); 
+        }
+        header {
+            flex-grow: 2;
+            flex-basis: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            margin: 0.5rem;
+            z-index: 2;
+        }
+        section {
+            display: flex;
+            flex-direction: row;
+            border-top: 3px solid #000;
+            border-bottom: 3px solid #000;
+            z-index: 2;
+        }
+        footer {
+            flex-grow: 5;
+            flex-basis: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        h1 {
+            margin: 0;
+            padding: 0;
+            font-size: 17px;
+            font-family: "DFGKanTeiRyu-XB", sans-serif;
+            color: white;
+            font-weight: normal;
+            -webkit-text-stroke: 5px black;
+            -webkit-text-fill-color: white;
+            paint-order: stroke fill;
+        }
+        #counterWrapper {
+            flex-grow: 1;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            background-color: #FF5701;
+            border-right: 3px solid #000;
+        }
+        #counterDrum {
+            background-color: #fff;
+            border: 4px solid #000;
+            border-radius: 50%;
+            width: 5em;
+            height: 5em;
+            align-items: center;
+            justify-content: center;
+            display: flex;
+            transform: scale(1.2);
+        }
+        #markerContainer {
+            width: 500px;
+            position: relative;
+            overflow: hidden;
+            height: 2em;
+            font-size: 2em;
+            font-weight: 900;
+            font-family: "M+ 2p", sans-serif;
+            background-color: #222;
+            /* background: linear-gradient(90deg, rgba(253,209,0,1) 0%, rgba(199,43,11,1) 30%, rgba(68,68,68,1) 100%); */
+        }
+        #markerTarget {
+            top: 0.05em;
+            left: 0.1em;
+            position: absolute;
+            width: 1.75em;
+            height: 1.75em;
+            border: 2px solid rgba(255, 255, 255, 0.4);
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+        #lyricsContainer {
+            width: 500px;
+            position: relative;
+            text-align: right;
+            overflow: hidden;
+            height: 1.6em;
+            font-size: 1em;
+            /* font-weight: 900; */
+            font-family: "DFGKanTeiRyu-XB", sans-serif;
+            white-space: nowrap;
+            background-color: #fff;
+            color: #000;
+        }
+        #lyricsContainer.red {
+            background-color: #B71C1C;
+            color: #fff;
+        }
+        #counter {
+            font-family: "DFKanTeiRyu-XB", sans-serif;
+            transform-origin: bottom;
+            font-size: 2em;
+            margin-top: 2px;
+        }
+        .marker {
+            display: inline-block;
+            position: absolute;
+            left: 115%;
+            top: calc(50% - 0.75em);
+            letter-spacing: -0.2em;
+            -webkit-text-stroke: 3px white;
+            -webkit-text-fill-color: black;
+            paint-order: stroke fill;
+            z-index: 2;
+        }
+        .lyricsGroup {
+            position: absolute;
+            right: 0.5em;
+            top: 0;
+            display: flex;
+            align-items: center;
+            height: 100%;
+        }
+        .lyrics.past {
+            opacity: 0.5;
+            display: inline-flex;
+            align-items: center;
+        }
+        .lyrics.red {
+            color: #B71C1C;
+        }
+        .lyrics.current {
+            margin-left: 0.5em;
+            display: inline-flex;
+            align-items: center;
+        }
+        .lyrics.currentWord {
+            text-decoration: underline;
+        }
+        .divider {
+            height: 100%;
+            width: 0;
+            border-left: 1px solid rgba(255, 255, 255, 0.4);
+            z-index: 0;
+            position: absolute;
+            transform: translateX(0.5em);
+        }
+        span.group, span.group3 {
+            display: inline-flex;
+            flex-direction: column;
+            vertical-align: middle;
+            font-size: 0.8em;
+            text-align: center;
+            margin: 0 0.25em;
+        }
+        span.group3 {
+            font-size: 0.6em;
+        }
+    </style>
+
+    <script src="./mapping.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/TextPlugin.min.js"></script>
+    <!-- 60/240=0.25
+    480* = 0.25
+    5280* = 0.25*11
+    offset = 2.75 -->
+    <script>
+        var player = document.getElementById('player');
+        var start = document.getElementById('start');
+        var stop = document.getElementById('stop');
+
+        function getRandomFromRange(min, max) {
+            return Math.random() * (max - min) + min;
+        }
+
+        function toggleClass(elms, isAdd)
+        {
+            // console.log(elms, isAdd);
+            for (var elm of elms) {
+                if (isAdd) {
+                    elm.classList.add('red');
+                } else {
+                    elm.classList.remove('red');
+                }
+            }
+        }
+
+        function fillMarkers(letters) {
+            var markers = document.getElementById('markerContainer');
+            var lyrics = document.getElementById('lyricsContainer');
+            var pastLine = "";
+            var currentLine = "";
+            var currentWord = "";
+            return letters.map((letterset) => {
+                var [letter, notes, word, altLetter, red] = letterset;
+                var marker = document.createElement('div');
+                /*
+                var pastLineNode = document.createElement("span");
+                var currentLineNode = document.createElement("span");
+                var currentWordNode = document.createElement("span");
+                var lyricsNode = document.createElement("div");
+                pastLineNode.className = "lyrics past";
+                currentLineNode.className = "lyrics current";
+                currentWordNode.className = "lyrics currentWord";
+                lyricsNode.className = "lyricsGroup";
+                */
+
+                if (word === true) {
+                    pastLine += " " + currentLine;
+                    currentLine = "";
+                    currentWord = "";
+                    currentWord += letter;
+                } else if (word !== undefined && word !== null) {
+                    currentLine += word;
+                    currentWord = "";
+                } else {
+                    if (altLetter) currentWord += altLetter;
+                    else currentWord += letter;
+                }
+
+                var rot = getRandomFromRange(-20, 20), scale = getRandomFromRange(0.8, 1.5);
+
+                marker.className = 'marker';
+                marker.innerText = letter;
+                marker.style.transform = `rotate(${rot}deg) scale(${scale})`;
+
+                markers.appendChild(marker);
+                /*
+                pastLineNode.innerText = pastLine;
+                currentLineNode.innerText = currentLine;
+                currentWordNode.innerText = currentWord;
+                lyricsNode.appendChild(pastLineNode);
+                lyricsNode.appendChild(currentLineNode);
+                lyricsNode.appendChild(currentWordNode);
+                lyrics.appendChild(lyricsNode);
+                */
+                return [letter, notes, marker, pastLine, currentLine, currentWord, red];
+            });
+        }
+
+        function buildGsamTimeline(offset, bpm, notesPerBeat, markers, duration) {
+            var tl = gsap.timeline({ paused: true });
+            var beat = 60 / bpm;
+
+            var lyricsContainer = document.querySelector('#lyricsContainer');
+            var pastLineNode = document.querySelector('.lyrics.past');
+            var currentLineNode = document.querySelector('.lyrics.current');
+            var currentWordNode = document.querySelector('.lyrics.currentWord');
+            var counterNode = document.getElementById('counter');
+
+            var notes = 0;
+            var combo = 0;
+            for (var marker of markers) {
+                var [letter, noteCounts, elm, pastLine, currentLine, currentWord, red] = marker;
+                var at = offset + (notes / notesPerBeat) * beat - duration;
+                var end = offset + ((notes + noteCounts) / notesPerBeat) * beat;
+                var containerWidth = 500;
+                tl.fromTo(
+                    elm,
+                    { left: "105%"},
+                    { left: "3.25%", opacity: 1, duration: duration, ease: 'linear' },
+                    at,
+                );
+                tl.to(
+                    elm,
+                    { opacity: 0, scale: 2.5, duration: 0.15, ease: "ease-out" },
+                    at + duration
+                );
+
+                // console.log(pastLine, currentLine, currentWord);
+                tl.set(pastLineNode, {text: pastLine}, at + duration);
+                tl.set(currentLineNode, {text: currentLine}, at + duration);
+                tl.set(currentWordNode, {text: currentWord}, at + duration);
+                tl.call(toggleClass, [[lyricsContainer, /*currentLineNode, currentWordNode*/], red], at + duration);
+                notes += noteCounts;
+
+                // counter
+                if (letter !== " ") {
+                    combo += 1;
+                    tl.set(counterNode, {text: combo}, at + duration);
+                    tl.fromTo(counterNode, {scaleY: 1}, {scaleY: 1.2, duration: 0.03}, at + duration)
+                      .to(counterNode, {scaleY: 1, duration: 0.03}, at + duration + 0.03);
+                }
+            }
+
+            // dividers
+            for (var i = 0; i < 1200; i++) {
+                var divider = document.createElement('div');
+                divider.className = 'divider';
+                divider.style.left = "105%";
+                markerContainer.appendChild(divider);
+                tl.fromTo(
+                    divider,
+                    { left: "105%" },
+                    { left: "3.25%", duration: duration, ease: "linear" },
+                    offset + (i * beat) - duration
+                ).set(divider, { left: "105%" }, offset + (i * beat));
+            }
+            return tl;
+        };
+
+        mapping = fillMarkers(mapping);
+        var timeline = buildGsamTimeline(2.75/*4.2*/, 240, 480, mapping, 0.7);
+        player.playbackRate = 1;
+        timeline.playbackRate = 1;
+        start.addEventListener('click', function() {
+            player.currentTime = 0;
+            timeline.seek(0);
+            player.play();
+            timeline.play();
+        });
+        stop.addEventListener('click', function() {
+            player.pause();
+            timeline.pause();
+        });
+    </script>
+</body>
+</html>
