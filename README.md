@@ -2,10 +2,10 @@
 > HTML + CSS + JS で積み上げた音ゲーらしき何か。
 > 見れるは見れるけど、遊べない。
 
-推奨ブラウザー：Firefox
-
 ## 『初音天地開闢神話』(`kaibyaku`)
 Demo: https://youtu.be/watch?v=8rE4W-PdPsY
+
+推奨ブラウザー：Firefox
 
 本家様：初音天地開闢神話 / cosMo@暴走P feat. 初音ミク  
 https://youtu.be/8J6SMoVd5BY
@@ -13,17 +13,33 @@ https://youtu.be/8J6SMoVd5BY
 ## 『トンデモワンダーズ』(`wonderz`)
 Demo: https://youtu.be/zUqiB6cbWto
 
+推奨ブラウザー：Firefox
+
 本家様：トンデモワンダーズ / sasakure.UK feat. 初音ミク (+ KAITO)  
 https://www.youtube.com/watch?v=dBQg24mx45Y
 
 ## 『初音ミクの消失』(`shoshitsu`)
 Demo: https://www.youtube.com/watch?v=jgNox_D2LrE
 
+推奨ブラウザー：Firefox
+
 本家様：初音ミクの消失 (2018 Remake) / cosMo@暴走P feat. 初音ミク  
 https://www.youtube.com/watch?v=VWVtIg5cdDU
 
 間奏部分に用いた替え歌の歌詞：The Disappearance of Wanko -Another Start- / 犬神宏樹  
 https://www.nicovideo.jp/watch/sm5393025
+
+
+## 『マシンガンポエムドール』（`machinegun`）
+Demo: https://youtu.be/CAFyZsu8TMs
+
+推奨ブラウザー：Chrome
+
+本家様：マシンガンポエムドール / cosMo@暴走P feat. 初音ミク  
+https://www.youtube.com/watch?v=UgZFpO_Y6qo
+
+譜面参考：プロジェクトセカイ カラフルステージ！ feat. 初音ミク  
+https://pjsekai.sega.jp/
 
 ----
 
